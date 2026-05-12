@@ -1,0 +1,35 @@
+//import packages,
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDb from "./src/config/db.js";
+import productRoutes from "./src/routes/product-routes.js";
+import authRoutes from "./src/routes/auth-routes.js";
+import { fileURLToPath } from "url";
+import path from "path";
+
+//configure env
+dotenv.config();
+
+//Database connection
+connectDb();
+
+//setup variables
+const server = express();
+const port = process.env.PORT;
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
+//setup middlewares
+server.use(express.json());
+server.use(cors());
+server.use("/api/auth", authRoutes);
+server.use("/", productRoutes);
+server.use("/uploads", express.static(path.join(dirname, "uploads")));
+
+//server
+
+server.listen(port, () =>
+  console.log(`Server listening at http://127.0.0.1:${port}`),
+);

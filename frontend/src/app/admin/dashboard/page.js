@@ -14,7 +14,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const { data } = await axios.get("http://127.0.0.1:5000/products");
+        const { data } = await axios.get("https://lianaluxe-backend.onrender.com/products");
         setStats({
           totalProducts: data.products?.length || 0,
           loading: false,

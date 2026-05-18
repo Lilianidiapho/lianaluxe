@@ -11,7 +11,7 @@ export default function NewarrivalSection() {
   useEffect(() => {
     async function fetchNewArrivals() {
       try {
-        const { data } = await axios.get("http://127.0.0.1:5000/products");
+        const { data } = await axios.get("https://lianaluxe-backend.onrender.com/products");
         if (data.products) {
           // latest products added will be the new arrivals
           const latestProducts = [...data.products].reverse().slice(0, 8);
@@ -27,7 +27,7 @@ export default function NewarrivalSection() {
             rating: p.rating || 5,
             reviews: Math.floor(Math.random() * 20) + 1, // mock reviews since it's not in db
             image: p.images && p.images[0] 
-              ? (p.images[0].startsWith("/uploads") ? `http://127.0.0.1:5000${p.images[0]}` : p.images[0]) 
+              ? (p.images[0].startsWith("/uploads") ? `https://lianaluxe-backend.onrender.com${p.images[0]}` : p.images[0]) 
               : "/perf.jpg"
           }));
           setNewarrivalProducts(formatted);

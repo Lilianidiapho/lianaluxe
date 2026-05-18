@@ -63,7 +63,7 @@ export default function AddProductPage() {
         data.append("images", image); // The backend expects an array of files with the key "images"
       });
 
-      await axios.post("http://127.0.0.1:5000/product", data, {
+      await axios.post("https://lianaluxe-backend.onrender.com/product", data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,

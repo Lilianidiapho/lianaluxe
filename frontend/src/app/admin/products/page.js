@@ -16,7 +16,7 @@ export default function ProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://127.0.0.1:5000/products");
+      const { data } = await axios.get("https://lianaluxe-backend.onrender.com/products");
       setProducts(data.products || []);
     } catch (error) {
       console.error("Error fetching products", error);
@@ -30,7 +30,7 @@ export default function ProductsPage() {
     
     try {
       const token = localStorage.getItem("adminToken");
-      await axios.delete(`http://127.0.0.1:5000/product/${id}`, {
+      await axios.delete(`https://lianaluxe-backend.onrender.com/product/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchProducts(); // Refresh list
@@ -81,7 +81,7 @@ export default function ProductsPage() {
                         {product.images && product.images.length > 0 && (
                           <div className="w-10 h-10 rounded overflow-hidden bg-white/10 flex-shrink-0">
                             <img 
-                              src={`http://127.0.0.1:5000${product.images[0]}`} 
+                              src={`https://lianaluxe-backend.onrender.com${product.images[0]}`} 
                               alt={product.name} 
                               className="w-full h-full object-cover" 
                             />

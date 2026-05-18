@@ -23,7 +23,7 @@ export default function ProductDetail({ params }) {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const { data } = await axios.get(`http://127.0.0.1:5000/product/${id}`);
+        const { data } = await axios.get(`https://lianaluxe-backend.onrender.com/product/${id}`);
         if (data.product) {
           const p = data.product;
           setProduct({
@@ -33,7 +33,7 @@ export default function ProductDetail({ params }) {
             category: p.category,
             description: p.description || "An exceptional piece from our exclusive collection. Crafted with the finest materials for a truly immersive experience.",
             image: p.images && p.images[0] 
-              ? (p.images[0].startsWith("/uploads") ? `http://127.0.0.1:5000${p.images[0]}` : p.images[0]) 
+              ? (p.images[0].startsWith("/uploads") ? `https://lianaluxe-backend.onrender.com${p.images[0]}` : p.images[0]) 
               : "/perf.jpg"
           });
         }

@@ -18,7 +18,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const { data } = await axios.post("http://127.0.0.1:5000/api/auth/login", {
+      const { data } = await axios.post("https://lianaluxe-backend.onrender.com/api/auth/login", {
         email,
         password,
       });

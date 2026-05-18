@@ -32,7 +32,7 @@ export default function EditProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://127.0.0.1:5000/product/${id}`);
+        const { data } = await axios.get(`https://lianaluxe-backend.onrender.com/product/${id}`);
         const p = data.product;
         setFormData({
           name: p.name || "",
@@ -97,7 +97,7 @@ export default function EditProductPage() {
         });
       }
 
-      await axios.put(`http://127.0.0.1:5000/product/${id}`, data, {
+      await axios.put(`https://lianaluxe-backend.onrender.com/product/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -243,7 +243,7 @@ export default function EditProductPage() {
               <div className="flex gap-4">
                 {existingImages.map((src, idx) => (
                   <div key={idx} className="relative w-16 h-16 rounded overflow-hidden border border-white/10 opacity-60">
-                    <img src={`http://127.0.0.1:5000${src}`} alt={`Existing ${idx}`} className="w-full h-full object-cover" />
+                    <img src={`https://lianaluxe-backend.onrender.com${src}`} alt={`Existing ${idx}`} className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>

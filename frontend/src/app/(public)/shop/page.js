@@ -20,7 +20,7 @@ function ShopContent() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const { data } = await axios.get("http://127.0.0.1:5000/products");
+        const { data } = await axios.get("https://lianaluxe-backend.onrender.com/products");
         if (data.products) {
           const formatted = data.products.map(p => ({
             id: p._id,
@@ -28,7 +28,7 @@ function ShopContent() {
             price: p.price.toString(),
             category: p.category,
             image: p.images && p.images[0] 
-              ? (p.images[0].startsWith("/uploads") ? `http://127.0.0.1:5000${p.images[0]}` : p.images[0]) 
+              ? (p.images[0].startsWith("/uploads") ? `https://lianaluxe-backend.onrender.com${p.images[0]}` : p.images[0]) 
               : "/perf.jpg"
           }));
           setAllProducts(formatted);

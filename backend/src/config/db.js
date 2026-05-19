@@ -9,10 +9,14 @@ if (dburl && dburl.startsWith('"') && dburl.endsWith('"')) {
 }
 
 export default function connectDb() {
-  try {
-    mongoose.connect(dburl);
-    console.log("Database connected successfully");
-  } catch (error) {
-    console.error("Error connecting to database", error);
+  if (!dburl) {
+    console.error("CRITICAL ERROR: DBURL environment variable is missing!");
+    return;
   }
+  
+  mongoose.connect(dburl)
+    .then(() => console.log("Database connected successfully"))
+    .catch((error) => {
+      console.error("Error connecting to database:", error.message);
+    });
 }

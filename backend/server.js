@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDb from "./src/config/db.js";
 import productRoutes from "./src/routes/product-routes.js";
 import authRoutes from "./src/routes/auth-routes.js";
+import videoRoutes from "./src/routes/video-routes.js";
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -26,6 +27,7 @@ server.use(express.json());
 server.use(cors());
 server.use("/api/auth", authRoutes);
 server.use("/", productRoutes);
+server.use("/videos", videoRoutes);
 server.use("/uploads", express.static(path.join(dirname, "uploads")));
 
 //server

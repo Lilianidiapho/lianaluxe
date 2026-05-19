@@ -16,7 +16,7 @@ connectDb();
 
 //setup variables
 const server = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,6 +30,6 @@ server.use("/uploads", express.static(path.join(dirname, "uploads")));
 
 //server
 
-server.listen(port, () =>
-  console.log(`Server listening at http://127.0.0.1:${port}`),
+server.listen(port, "0.0.0.0", () =>
+  console.log(`Server listening at http://0.0.0.0:${port}`),
 );

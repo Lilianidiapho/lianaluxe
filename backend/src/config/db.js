@@ -3,7 +3,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const dburl = process.env.DBURL;
+let dburl = process.env.DBURL;
+if (dburl && dburl.startsWith('"') && dburl.endsWith('"')) {
+  dburl = dburl.slice(1, -1);
+}
 
 export default function connectDb() {
   try {

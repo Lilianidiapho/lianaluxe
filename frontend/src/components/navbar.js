@@ -153,7 +153,7 @@ export default function Navbar() {
                   opacity: isSearchOpen ? 1 : 0 
                 }}
                 transition={{ duration: 0.3 }}
-                className="overflow-visible mr-2 relative"
+                className="overflow-hidden mr-2"
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (searchQuery.trim()) {
@@ -170,55 +170,7 @@ export default function Navbar() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-black/40 border border-white/20 rounded-full px-4 py-1 text-sm text-white focus:outline-none focus:border-neon-primary placeholder-gray-500"
                 />
-                
-                {/* Live Search Dropdown */}
-                <AnimatePresence>
-                  {isSearchOpen && searchResults.length > 0 && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full right-0 mt-3 w-[300px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col z-50"
-                    >
-                      {searchResults.map(product => {
-                        const imgPath = product.images && product.images[0]
-                          ? (product.images[0].startsWith("/uploads") ? `https://lianaluxe-backend.onrender.com${product.images[0]}` : product.images[0])
-                          : "/perf.jpg";
-                        
-                        return (
-                          <div 
-                            key={product._id}
-                            onClick={() => {
-                              router.push(`/product/${product._id}`);
-                              setIsSearchOpen(false);
-                              setSearchQuery("");
-                              setSearchResults([]);
-                            }}
-                            className="flex items-center gap-3 px-4 py-3 border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
-                          >
-                            <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-white/5">
-                              <img src={imgPath} alt={product.name} className="w-full h-full object-cover" />
-                            </div>
-                            <div className="flex flex-col">
-                              <span className="text-sm font-sans text-white truncate max-w-[200px]">{product.name}</span>
-                              <span className="text-xs text-neon-primary">₦{product.price}</span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                      <div 
-                        className="px-4 py-3 text-xs text-center text-gray-400 hover:text-white cursor-pointer bg-white/5 transition-colors"
-                        onClick={() => {
-                          router.push(`/shop?query=${encodeURIComponent(searchQuery)}`);
-                          setIsSearchOpen(false);
-                          setSearchResults([]);
-                        }}
-                      >
-                        View all results for "{searchQuery}"
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                />
               </motion.form>
               <button 
                 type="button"
@@ -233,6 +185,55 @@ export default function Navbar() {
               >
                 <Search className="w-5 h-5" />
               </button>
+
+              {/* Live Search Dropdown */}
+              <AnimatePresence>
+                {isSearchOpen && searchResults.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full right-0 mt-5 w-[300px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col z-50"
+                  >
+                    {searchResults.map(product => {
+                      const imgPath = product.images && product.images[0]
+                        ? (product.images[0].startsWith("/uploads") ? `https://lianaluxe-backend.onrender.com${product.images[0]}` : product.images[0])
+                        : "/perf.jpg";
+                      
+                      return (
+                        <div 
+                          key={product._id}
+                          onClick={() => {
+                            router.push(`/product/${product._id}`);
+                            setIsSearchOpen(false);
+                            setSearchQuery("");
+                            setSearchResults([]);
+                          }}
+                          className="flex items-center gap-3 px-4 py-3 border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
+                        >
+                          <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-white/5">
+                            <img src={imgPath} alt={product.name} className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-sans text-white truncate max-w-[200px]">{product.name}</span>
+                            <span className="text-xs text-neon-primary">₦{product.price}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    <div 
+                      className="px-4 py-3 text-xs text-center text-gray-400 hover:text-white cursor-pointer bg-white/5 transition-colors"
+                      onClick={() => {
+                        router.push(`/shop?query=${encodeURIComponent(searchQuery)}`);
+                        setIsSearchOpen(false);
+                        setSearchResults([]);
+                      }}
+                    >
+                      View all results for "{searchQuery}"
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
             
             <button className="text-gray-300 hover:text-neon-primary transition-colors">

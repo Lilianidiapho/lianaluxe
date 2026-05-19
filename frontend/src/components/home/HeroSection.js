@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import FuturisticButton from "@/components/ui/FuturisticButton";
+import Link from "next/link";
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
@@ -65,8 +66,12 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 1 }}
           className="flex flex-col sm:flex-row gap-6"
         >
-          <FuturisticButton variant="primary">Shop Collection</FuturisticButton>
-          <FuturisticButton variant="glass">Explore Story</FuturisticButton>
+          <Link href="/shop">
+            <FuturisticButton variant="primary">Shop Collection</FuturisticButton>
+          </Link>
+          <Link href="/story">
+            <FuturisticButton variant="glass">Explore Story</FuturisticButton>
+          </Link>
         </motion.div>
       </motion.div>
 

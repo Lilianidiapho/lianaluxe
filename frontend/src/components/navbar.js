@@ -175,10 +175,16 @@ export default function Navbar() {
               <button 
                 type="button"
                 onClick={() => {
-                  setIsSearchOpen(!isSearchOpen);
-                  if (isSearchOpen) {
-                    setSearchQuery("");
-                    setSearchResults([]);
+                  if (!isSearchOpen) {
+                    setIsSearchOpen(true);
+                  } else {
+                    if (searchQuery.trim()) {
+                      router.push(`/shop?query=${encodeURIComponent(searchQuery)}`);
+                      setIsSearchOpen(false);
+                      setSearchResults([]);
+                    } else {
+                      setIsSearchOpen(false);
+                    }
                   }
                 }}
                 className="text-gray-300 hover:text-neon-primary transition-colors"
@@ -236,9 +242,7 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
             
-            <button className="text-gray-300 hover:text-neon-primary transition-colors">
-              <User className="w-5 h-5" />
-            </button>
+
             <Link href="/cart" className="relative text-gray-300 hover:text-neon-primary transition-colors">
               <ShoppingCart className="w-5 h-5" />
               {mounted && isLoaded && getCartCount() > 0 && (

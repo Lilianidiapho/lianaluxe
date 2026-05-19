@@ -85,6 +85,14 @@ export default function AdminLayout({ children }) {
             <Plus size={20} />
             <span className="font-sans tracking-wider text-sm uppercase">Add Product</span>
           </Link>
+
+          <Link 
+            href="/admin/videos" 
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${pathname.startsWith("/admin/videos") ? "bg-neon-primary/20 text-neon-primary border border-neon-primary/50 shadow-[0_0_15px_rgba(var(--neon-primary),0.3)]" : "hover:bg-white/5 text-gray-400 hover:text-white"}`}
+          >
+            <Settings size={20} />
+            <span className="font-sans tracking-wider text-sm uppercase">Manage Videos</span>
+          </Link>
         </nav>
 
         <div className="p-4 border-t border-neon-primary/20">

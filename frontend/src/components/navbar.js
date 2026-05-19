@@ -170,7 +170,6 @@ export default function Navbar() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-black/40 border border-white/20 rounded-full px-4 py-1 text-sm text-white focus:outline-none focus:border-neon-primary placeholder-gray-500"
                 />
-                />
               </motion.form>
               <button 
                 type="button"
